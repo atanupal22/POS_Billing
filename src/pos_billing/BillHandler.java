@@ -17,7 +17,7 @@ public class BillHandler {
     private final ArrayList<BillEntity> itemsListWithQuantityAndTotalTax = new ArrayList<>();
     private BigDecimal totalSalesTax = new BigDecimal(0.00);
     private BigDecimal totalBasePrice = new BigDecimal(0.00);
-    
+
     final TaxCalculator taxCalculator = new TaxCalculator();
     
     public void showInConsole(){
@@ -49,6 +49,14 @@ public class BillHandler {
                 .multiply(new BigDecimal(quantity)));
         
         itemsListWithQuantityAndTotalTax.add(new BillEntity(item,quantity,itemSalesTax));
+    }
+    
+    public BigDecimal getTotalSalesTax() {
+        return totalSalesTax;
+    }
+
+    public BigDecimal getTotalBasePrice() {
+        return totalBasePrice;
     }
     
     private class BillEntity{

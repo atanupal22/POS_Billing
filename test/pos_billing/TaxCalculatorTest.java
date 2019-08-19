@@ -22,12 +22,16 @@ public class TaxCalculatorTest {
     public TaxCalculatorTest() {
     }
     
+    static DummyDAO dao;
+    
     @BeforeClass
     public static void setUpClass() {
+        dao = new DummyDAO();
     }
     
     @AfterClass
     public static void tearDownClass() {
+        dao=null;
     }
     
     @Before
@@ -38,8 +42,8 @@ public class TaxCalculatorTest {
     public void tearDown() {
     }
     
-    public String generateRandomID(){
-        return Integer.toString((int) (Math.random() * 1000000));
+    private String generateRandomID(){
+        return dao.generateRandomID();
     }
 
     /**
