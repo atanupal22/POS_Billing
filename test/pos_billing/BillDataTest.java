@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author atanu
  */
-public class BillHandlerTest {
+public class BillDataTest {
     
-    public BillHandlerTest() {
+    public BillDataTest() {
     }
     
     static DummyDAO dao;
