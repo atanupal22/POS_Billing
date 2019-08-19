@@ -57,7 +57,7 @@ public class BillHandlerTest {
         int quantity = 1;
         BigDecimal expTotalBasePrice = new BigDecimal("12.49");
         BigDecimal expTotalSalesTax = new BigDecimal("0.00");
-        BillHandler instance = new BillHandler();
+        BillData instance = new BillData();
         instance.addItemToBill(item, quantity);
         assertEquals(expTotalBasePrice, instance.getTotalBasePrice());
         assertEquals(expTotalSalesTax, instance.getTotalSalesTax());
@@ -73,7 +73,7 @@ public class BillHandlerTest {
         int quantity = 1;
         BigDecimal expTotalBasePrice = new BigDecimal("28.33");
         BigDecimal expTotalSalesTax = new BigDecimal("1.50");
-        BillHandler instance = new BillHandler();
+        BillData instance = new BillData();
         items.forEach( item -> instance.addItemToBill(item, quantity));
         assertEquals(expTotalBasePrice, instance.getTotalBasePrice());
         assertEquals(expTotalSalesTax, instance.getTotalSalesTax());

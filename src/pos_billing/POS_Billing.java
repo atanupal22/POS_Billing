@@ -5,6 +5,8 @@
  */
 package pos_billing;
 
+import print.PrintToIO;
+import print.PrintFactory;
 import java.util.ArrayList;
 
 /**
@@ -19,14 +21,18 @@ public class POS_Billing {
     public static void main(String[] args) {
         ArrayList<Item> itemsList = new DummyDAO().queryOne();
                 
-        BillHandler billHandler = new BillHandler();
+        BillData billData = new BillData();
         
         itemsList.forEach( item -> {
             int quantity = 1; //can get random quantity or get it from user input
             
-            billHandler.addItemToBill(item, quantity);
+            billData.addItemToBill(item, quantity);
         });
         
-        billHandler.showInConsole();
+        BillTextFormater billTextFormater = new BillTextFormaterFactory().getBillTextFormater("withFinalPrice", billData);
+        String billText = billTextFormater.generateBillText();
+        
+        PrintToIO printer = new PrintFactory().getPrintToIO("console");
+        printer.print(billText);
     }
 }

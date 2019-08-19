@@ -12,32 +12,14 @@ import java.util.ArrayList;
  *
  * @author atanu
  */
-public class BillHandler {
+public class BillData {
     
     private final ArrayList<BillEntity> itemsListWithQuantityAndTotalTax = new ArrayList<>();
+
     private BigDecimal totalSalesTax = new BigDecimal(0.00);
     private BigDecimal totalBasePrice = new BigDecimal(0.00);
 
     final TaxCalculator taxCalculator = new TaxCalculator();
-    
-    public void showInConsole(){
-                
-        itemsListWithQuantityAndTotalTax.forEach( billEntity -> {
-            
-            Item item = billEntity.item;
-            int quantity = billEntity.quantity;
-            BigDecimal itemSalesTax = billEntity.totalTax;
-            
-            System.out.println(quantity + " " 
-                    + item.getName() + " : "
-                    + item.getPrice().add(itemSalesTax)
-                            .multiply(new BigDecimal(quantity))
-            );
-        });
-        
-        System.out.println("Sales Taxes : " + totalSalesTax);
-        System.out.println("Total : " + (totalBasePrice.add(totalSalesTax)));
-    }
     
     public void addItemToBill(Item item, int quantity){
         BigDecimal itemSalesTax = taxCalculator.calculateTax(item);
@@ -59,7 +41,11 @@ public class BillHandler {
         return totalBasePrice;
     }
     
-    private class BillEntity{
+    public ArrayList<BillEntity> getItemsListWithQuantityAndTotalTax() {
+        return itemsListWithQuantityAndTotalTax;
+    }
+    
+    class BillEntity{
         Item item;
         int quantity;
         BigDecimal totalTax;
