@@ -13,13 +13,13 @@ import java.math.BigDecimal;
  */
 public class Item {
     
-    enum Type{
+    public enum Type{
         BOOK (true),
         MEDICAL (true),
         FOOD (true),
         OTHERS (false);
         
-        public boolean salesTaxExempted;
+        public final boolean salesTaxExempted;
         
         Type(boolean salesTaxExempted){
             this.salesTaxExempted = salesTaxExempted;
