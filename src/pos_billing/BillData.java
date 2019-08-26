@@ -19,10 +19,13 @@ public class BillData {
     private BigDecimal totalSalesTax = new BigDecimal(0.00);
     private BigDecimal totalBasePrice = new BigDecimal(0.00);
 
-    final TaxCalculator taxCalculator = new TaxCalculator();
-    
+    /**
+     * Add items to this bill and calculates the changes in totalBasePrice & totalSalesTax;
+     * @param item - Item to be added
+     * @param quantity - How many quantity to be added
+     */
     public void addItemToBill(Item item, int quantity){
-        BigDecimal itemSalesTax = taxCalculator.calculateTax(item);
+        BigDecimal itemSalesTax = TaxCalculator.getInstance().calculateTax(item);
 
         totalSalesTax = totalSalesTax.add(itemSalesTax
                 .multiply(new BigDecimal(quantity)));
@@ -33,15 +36,28 @@ public class BillData {
         itemsListWithQuantityAndTotalTax.add(new BillEntity(item,quantity,itemSalesTax));
     }
     
+    /**
+     * Returns total sales tax uptil now for this bill
+     * @return - totalSalesTax
+     */
     public BigDecimal getTotalSalesTax() {
         return totalSalesTax;
     }
 
+    /**
+     * Returns total base price uptil now for this bill
+     * @return - totalBasePrice
+     */
     public BigDecimal getTotalBasePrice() {
         return totalBasePrice;
     }
     
+    /**
+     * Returns list of items in this bill.
+     * @return - Returns clone Object of list of items in this bill uptil now.
+     */
     public ArrayList<BillEntity> getItemsListWithQuantityAndTotalTax() {
+        ArrayList<BillEntity> cloneList = (ArrayList<BillEntity>)itemsListWithQuantityAndTotalTax.clone();
         return itemsListWithQuantityAndTotalTax;
     }
     

@@ -13,6 +13,11 @@ import java.util.ArrayList;
  * @author atanu
  */
 public class DummyDAO {
+
+    /**
+     * Assuming this will come from some other module of DB
+     * @return - ArrayList of Local Items
+     */
     public ArrayList<Item> queryOne(){
         Item item1 = new Item(generateRandomID(), Item.Type.BOOK, new BigDecimal("12.49"), "Harry Potter", "book", false);
         Item item2 = new Item(generateRandomID(), Item.Type.OTHERS, new BigDecimal("14.99"), "The Wall (Pink Floyd)", "music cd", false);
@@ -26,6 +31,10 @@ public class DummyDAO {
         return itemsList;
     }
     
+    /**
+     * Assuming this will come from some other module of DB
+     * @return - ArrayList of Imported Items
+     */
     public ArrayList<Item> queryTwo(){
         Item item1 = new Item(generateRandomID(), Item.Type.FOOD, new BigDecimal("10.00"), "Ferrero Rocher", "imported chocolate bar", true);
         Item item2 = new Item(generateRandomID(), Item.Type.OTHERS, new BigDecimal("47.50"), "Perfume", "imported bottle of perfume", true);
@@ -37,6 +46,10 @@ public class DummyDAO {
         return itemsList;
     }
     
+    /**
+     * Assuming this will come from some other module of DB
+     * @return - ArrayList of Mixed Items
+     */
     public ArrayList<Item> queryThree(){
         Item item1 = new Item(generateRandomID(), Item.Type.OTHERS, new BigDecimal("27.99"), "Perfume", "imported bottle of perfume", true);
         Item item2 = new Item(generateRandomID(), Item.Type.OTHERS, new BigDecimal("18.99"), "Perfume local", "bottle of perfume", false);
@@ -52,6 +65,10 @@ public class DummyDAO {
         return itemsList;
     }
     
+    /**
+     * Assuming this will be given by DB or Stock Management system.
+     * @return - Random interger from 0 to 1000000
+     */
     public String generateRandomID(){
         return Integer.toString((int) (Math.random() * 1000000));
     }

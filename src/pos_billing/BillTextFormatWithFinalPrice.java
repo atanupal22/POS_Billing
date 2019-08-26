@@ -8,21 +8,35 @@ package pos_billing;
 import java.math.BigDecimal;
 
 /**
- *
+ * This is a reusable Object, if used frequently can be changed to singleton
  * @author atanu
  */
 public class BillTextFormatWithFinalPrice extends BillTextFormater{
     
+    /**
+     * Empty constructor so that BillData can be set later.
+     */
+    public BillTextFormatWithFinalPrice(){}
+    
+    /**
+     * Constructor to inject Bill data object
+     * @param billData
+     */
     public BillTextFormatWithFinalPrice(BillData billData){
         super(billData);
     }
     
     /**
-     *
-     * @return
+     * Generates bill text with quantity, final price of each item including taxes,
+     * total Sales tax in given bill & total price of the bill.
+     * @return - String representation of Bill Data.
      */
     @Override
     public String generateBillText(){
+        
+        if(billData == null){
+            throw new NullPointerException("Bill Data is null hence bill text can not be created");
+        }
         
         StringBuilder billText = new StringBuilder("");
                 
